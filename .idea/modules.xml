@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SystemFaltas.iml" filepath="$PROJECT_DIR$/SystemFaltas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Sistema-De-Faltas-para-Faculdade.iml" filepath="$PROJECT_DIR$/.idea/Sistema-De-Faltas-para-Faculdade.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
