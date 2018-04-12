@@ -2,6 +2,7 @@ package com.example.dscodes.systemfaltas;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +18,10 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         CalendarView calendarView = findViewById(R.id.calendarView);
-        calendarView.setOnClickListener(new View.OnClickListener() {
-
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onClick(View v) {
-//                AlertDialog dialog = new AlertDialog(context);
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
+                new AlertDialog.Builder(context).setMessage(day);
             }
         });
         TextView textView = findViewById(R.id.textMateria);

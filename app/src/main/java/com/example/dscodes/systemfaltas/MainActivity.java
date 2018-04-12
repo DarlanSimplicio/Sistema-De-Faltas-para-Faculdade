@@ -3,6 +3,7 @@ package com.example.dscodes.systemfaltas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.*;
 
@@ -20,18 +21,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dados = (Dados) getApplication();
+
+        nome = findViewById(R.id.nomeAluno);
+        matricula = findViewById(R.id.numMatricula);
+        matricula.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+
+                    enviaDados(view);
+                }
+                return false;
+            }
+        });
     }
 
     public void enviaDados(View view) {
 
-        nome = (EditText) findViewById(R.id.nomeAluno);
-        matricula = (EditText) findViewById(R.id.numMatricula);
 
         Bundle params = new Bundle() ;
         dados.setNome(nome.getText().toString());
         dados.setMatricula(Long.parseLong(matricula.getText().toString()));
-        params.putString("Nome", nome.getText().toString()) ;
-        params.putString("Matricula", matricula.getText().toString()) ;
 
         Intent intent = new Intent(this, Main2Activity.class) ;
         intent.putExtras(params) ;
