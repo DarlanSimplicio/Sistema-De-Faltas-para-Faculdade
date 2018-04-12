@@ -36,13 +36,13 @@ public class Main2Activity extends AppCompatActivity {
                 String nome = dados.getNome();
                 String matricula = dados.getMatricula()+"";
 
-                TextView nomeTV = (TextView) findViewById(R.id.nome);
-                TextView matriculaTV = (TextView) findViewById(R.id.matricula);
+                TextView nomeTV = findViewById(R.id.nome);
+                TextView matriculaTV = findViewById(R.id.matricula);
 
                 nomeTV.setText("Nome: " + nome);
                 matriculaTV.setText("Matrícula: " + matricula);
 
-                ListView listaMaterias = (ListView) findViewById(R.id.listMaterias);
+                ListView listaMaterias = findViewById(R.id.listMaterias);
 
                 ArrayList<String> listMaterias = preencherMaterias();
 
@@ -53,7 +53,13 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intentView = new Intent(context,CalendarActivity.class);
-                        Materias m = new Materias();
+                        Materias m=null;
+
+                        for(Materias materias : dados.getMaterias() ) {
+                            if (materias.getNome().equals(((TextView) view).getText().toString())) {
+                                m = materias;
+                            }
+                        }
                         m.setNome(((TextView)view).getText().toString());
                         dados.setSelectedMateria(m);
                         startActivity(intentView);
@@ -67,14 +73,31 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private ArrayList<String> preencherMaterias() {
+        Materias materias;
+        ArrayList<String> lista = new ArrayList<String>();
+        lista.add("Circuitos Digitais");
+        lista.add("Logica de Programação");
+        lista.add("Inteligencia Artificial");
+        lista.add("Comunicação Digital");
+        lista.add("Banco de Dados");
+        if(dados.getMaterias().size()<=0){
+            materias = new Materias();
+            materias.setNome("Banco de Dados");
+            dados.getMaterias().add(materias);
+            materias = new Materias();
+            materias.setNome("Comunicação Digital");
+            dados.getMaterias().add(materias);
+            materias = new Materias();
+            materias.setNome("Inteligencia Artificial");
+            dados.getMaterias().add(materias);
+            materias = new Materias();
+            materias.setNome("Logica de Programação");
+            dados.getMaterias().add(materias);
+            materias = new Materias();
+            materias.setNome("Circuitos Digitais");
+            dados.getMaterias().add(materias);
+        }
 
-        ArrayList<String> dados = new ArrayList<String>();
-        dados.add("Circuitos Digitais");
-        dados.add("Logica de Programação");
-        dados.add("Inteligencia Artificial");
-        dados.add("Comunicação Digital");
-        dados.add("Banco de Dados");
-
-        return dados;
+        return lista;
     }
 }

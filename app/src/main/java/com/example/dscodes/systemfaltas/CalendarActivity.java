@@ -43,7 +43,11 @@ public class CalendarActivity extends AppCompatActivity {
         textView.setText(materiaSelected.getNome());
     }
     public void retornarTela(View view){
-        dados.getMaterias().get(dados.getMaterias().indexOf(materiaSelected));
+        for(Materias materia:dados.getMaterias()){
+            if(materia.getNome().equals(materiaSelected.getNome())){
+                materia.setFaltas(materia.getFaltas());
+            }}
+        dados.getSelectedMateria().setFaltas(materiaSelected.getFaltas());
         finish();
     }
 }
